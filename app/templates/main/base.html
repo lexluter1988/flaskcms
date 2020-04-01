@@ -25,8 +25,8 @@
 <body>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>My First Bootstrap 4 Page</h1>
-  <p>Resize this responsive page to see the effect!</p>
+  <h1>Flask Projects Generator</h1>
+
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -40,13 +40,14 @@
             <li class="nav-item">
                  <a class="nav-link" href="{{ url_for('auth.login') }}">login <span class="fa fa-user fa-1x"></span></a>
             </li>
-       {% endif %}
+      {% else %}
             <li class="nav-item">
                  <a class="nav-link" href="#">{{ current_user.username }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('auth.logout') }}"><span class="fa fa-sign-out fa-1x"></span></a>
             </li>
+      {% endif %}
       <li class="nav-item">
         <a class="nav-link" href="#">Create Project</a>
       </li>
