@@ -1,26 +1,20 @@
-from flask import url_for, redirect, render_template
+from flask import url_for, redirect, render_template, flash
 from flask_login import current_user
 
+from app import db
 from app.builders.builders import ProjectConfig, BuildProject
 from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTask, DeleteProjectTask, \
     CreateBlueprintsTask, CreateAppInitTask, CreateQuickStartScriptTask
 from app.main import bp
+from app.main.forms import ProjectForm
 
 
-@bp.route('/')
-@bp.route('/index')
-def index():
-    return render_template('main/base.html')
-
-
-@bp.route('/')
-@bp.route('/create/<project_name>')
-def create(project_name):
+def _build_project(project_name, packages=None):
     if not current_user.is_anonymous:
         user = current_user.username
     else:
         user = 'anonymous'
-    config = ProjectConfig(user, project_name)
+    config = ProjectConfig(user, project_name, packages=packages)
     builder = BuildProject(config)
     builder.task_add(BuildDirsTask(config))
     builder.task_add(BuildConfigsTask(config))
@@ -31,20 +25,39 @@ def create(project_name):
     return config.to_json()
 
 
-@bp.route('/')
-@bp.route('/zip/<project_name>')
-def zip(project_name):
+def _zip_project(project_name, packages=None):
     if not current_user.is_anonymous:
         user = current_user.username
     else:
         user = 'anonymous'
-    config = ProjectConfig(user, project_name)
+    config = ProjectConfig(user, project_name, packages=packages)
     builder = BuildProject(config)
     builder.task_add(CreateArchiveTask(config))
     builder.run_pipeline()
 
     zip = project_name + '.zip'
-    return redirect(url_for('static', filename=zip))
+    return url_for('static', filename=zip)
+
+
+@bp.route('/')
+@bp.route('/index')
+def index():
+    return render_template('main/base.html')
+
+
+@bp.route('/')
+@bp.route('/project', methods=['GET', 'POST'])
+def project_new():
+    form = ProjectForm()
+    if form.validate_on_submit():
+        # TODO: if user is not registered, no need to save in db
+        # db.session.add(user)
+        # db.session.commit()
+        _build_project(form.name.data, form.packages.data)
+        file_link = _zip_project(form.name.data, form.packages.data)
+        flash('Congratulations, project has been created')
+        return render_template('main/project_new.html', title='New Project', form=form)
+    return render_template('main/project_new.html', title='New Project', form=form)
 
 
 @bp.route('/')
