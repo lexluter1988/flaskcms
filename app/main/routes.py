@@ -50,13 +50,16 @@ def index():
 def project_new():
     form = ProjectForm()
     if form.validate_on_submit():
-        # TODO: if user is not registered, no need to save in db
-        # db.session.add(user)
-        # db.session.commit()
         _build_project(form.name.data, form.packages.data)
         file_link = _zip_project(form.name.data, form.packages.data)
         flash('Congratulations, project has been created')
-        return render_template('main/project_new.html', title='New Project', form=form)
+        if current_user.is_anonymous:
+            return render_template('main/projects_anon.html', title='New Project', form=form, url=file_link)
+        else:
+            # TODO: here we save project in DB
+            # db.session.add(user)
+            # db.session.commit()
+            return render_template('main/projects.html', title='New Project', form=form)
     return render_template('main/project_new.html', title='New Project', form=form)
 
 
