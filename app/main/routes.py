@@ -7,9 +7,10 @@ from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTas
     CreateBlueprintsTask, CreateAppInitTask, CreateQuickStartScriptTask
 from app.main import bp
 from app.main.forms import ProjectForm
+from app.models import Project
 
 
-def _build_project(project_name, packages=None):
+def _build_project(project_name, packages=None) -> ProjectConfig:
     if not current_user.is_anonymous:
         user = current_user.username
     else:
@@ -22,7 +23,7 @@ def _build_project(project_name, packages=None):
     builder.task_add(CreateAppInitTask(config))
     builder.task_add(CreateQuickStartScriptTask(config))
     builder.run_pipeline()
-    return config.to_json()
+    return config
 
 
 def _zip_project(project_name, packages=None):
@@ -39,6 +40,17 @@ def _zip_project(project_name, packages=None):
     return url_for('static', filename=zip)
 
 
+def _delete_project(project_name):
+    if not current_user.is_anonymous:
+        user = current_user.username
+    else:
+        user = 'anonymous'
+    config = ProjectConfig(user, project_name)
+    builder = BuildProject(config)
+    builder.task_add(DeleteProjectTask(config))
+    builder.run_pipeline()
+
+
 @bp.route('/')
 @bp.route('/index')
 def index():
@@ -50,29 +62,20 @@ def index():
 def project_new():
     form = ProjectForm()
     if form.validate_on_submit():
-        _build_project(form.name.data, form.packages.data)
+        config = _build_project(form.name.data, form.packages.data)
         file_link = _zip_project(form.name.data, form.packages.data)
         flash('Congratulations, project has been created')
         if current_user.is_anonymous:
             return render_template('main/projects_anon.html', title='New Project', form=form, url=file_link)
         else:
-            # TODO: here we save project in DB
-            # db.session.add(user)
-            # db.session.commit()
-            return render_template('main/projects.html', title='New Project', form=form)
+            project = Project(author=current_user,
+                              name=config.project_name,
+                              user_home=config.user_home,
+                              project_home=config.project_home,
+                              app_home=config.app_home,
+                              packages=' '.join(config.packages),
+                              archive=file_link)
+            db.session.add(project)
+            db.session.commit()
+            return redirect(url_for('main.projects'))
     return render_template('main/project_new.html', title='New Project', form=form)
-
-
-@bp.route('/')
-@bp.route('/delete/<project_name>')
-def delete(project_name):
-    if not current_user.is_anonymous:
-        user = current_user.username
-    else:
-        user = 'anonymous'
-    config = ProjectConfig(user, project_name)
-    builder = BuildProject(config)
-    builder.task_add(DeleteProjectTask(config))
-    builder.run_pipeline()
-
-    return "deleted"

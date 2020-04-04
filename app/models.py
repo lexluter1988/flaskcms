@@ -1,3 +1,4 @@
+from datetime import datetime
 from time import time
 
 import jwt
@@ -7,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db
 from app import login
+from app.builders.builders import ProjectConfig
 
 
 @login.user_loader
@@ -21,6 +23,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
+    projects = db.relationship('Project', backref='author', lazy='dynamic')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -45,3 +48,18 @@ class User(UserMixin, db.Model):
             current_app.logger.error('Error {}'.format(e))
             return
         return db.session.query(User).get(id)
+
+
+class Project(db.Model):
+    __tablename__ = 'projects'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    name = db.Column(db.String(512))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    user_home = db.Column(db.String(512))
+    project_home = db.Column(db.String(512))
+    app_home = db.Column(db.String(512))
+    archive = db.Column(db.String(512))
+    packages = db.Column(db.String(512))
