@@ -10,12 +10,16 @@ from app.main.forms import ProjectForm
 from app.models import Project
 
 
-def _build_project(project_name, packages=None) -> ProjectConfig:
+def _get_username():
     if not current_user.is_anonymous:
         user = current_user.username
     else:
         user = 'anonymous'
-    config = ProjectConfig(user, project_name, packages=packages)
+    return user
+
+
+def _build_project(project_name, packages=None) -> ProjectConfig:
+    config = ProjectConfig(_get_username(), project_name, packages=packages)
     builder = BuildProject(config)
     builder.task_add(BuildDirsTask(config))
     builder.task_add(BuildConfigsTask(config))
@@ -27,11 +31,7 @@ def _build_project(project_name, packages=None) -> ProjectConfig:
 
 
 def _zip_project(project_name, packages=None):
-    if not current_user.is_anonymous:
-        user = current_user.username
-    else:
-        user = 'anonymous'
-    config = ProjectConfig(user, project_name, packages=packages)
+    config = ProjectConfig(_get_username(), project_name, packages=packages)
     builder = BuildProject(config)
     builder.task_add(CreateArchiveTask(config))
     builder.run_pipeline()
@@ -41,11 +41,7 @@ def _zip_project(project_name, packages=None):
 
 
 def _delete_project(project_name):
-    if not current_user.is_anonymous:
-        user = current_user.username
-    else:
-        user = 'anonymous'
-    config = ProjectConfig(user, project_name)
+    config = ProjectConfig(_get_username(), project_name)
     builder = BuildProject(config)
     builder.task_add(DeleteProjectTask(config))
     builder.run_pipeline()
