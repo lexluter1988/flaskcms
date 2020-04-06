@@ -4,27 +4,21 @@
   <table class="table table-dark">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Packages</th>
+        <th>Arhive</th>
       </tr>
     </thead>
     <tbody>
+      {% for project in projects %}
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td>{{ project.name }}</td>
+        <td>{{ moment(project.timestamp).format('LLL') }}</td>
+        <td>{{ project.packages }}</td>
+        <td><a href="{{project.archive}}">download</a></td>
       </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 {% endblock %}

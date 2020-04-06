@@ -57,7 +57,6 @@ def index():
     return render_template('main/base.html')
 
 
-@bp.route('/')
 @bp.route('/project', methods=['GET', 'POST'])
 def project_new():
     form = ProjectForm()
@@ -79,3 +78,10 @@ def project_new():
             db.session.commit()
             return redirect(url_for('main.projects'))
     return render_template('main/project_new.html', title='New Project', form=form)
+
+
+@bp.route('/projects', methods=['GET'])
+def projects():
+    projects = db.session.query(Project).\
+        filter(Project.user_id == current_user.id).order_by(Project.timestamp.desc()).all()
+    return render_template('main/projects.html', title='My Projects', projects=projects)
