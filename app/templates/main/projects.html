@@ -8,17 +8,21 @@
         <th>Created</th>
         <th>Packages</th>
         <th>Arhive</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      {% for project in projects %}
-      <tr>
-        <td>{{ project.name }}</td>
-        <td>{{ moment(project.timestamp).format('LLL') }}</td>
-        <td>{{ project.packages }}</td>
-        <td><a href="{{project.archive}}">download</a></td>
-      </tr>
-      {% endfor %}
+      {% if projects | length %}
+        {% for project in projects %}
+        <tr>
+          <td>{{ project.name }}</td>
+          <td>{{ moment(project.timestamp).format('LLL') }}</td>
+          <td>{{ project.packages }}</td>
+          <td><a href="{{project.archive}}">download</a></td>
+          <td><a href="{{ url_for('main.project_delete', project_id = project.id ) }}"><i class="fa fa-trash-o fa-1x"></i></a></td>
+        </tr>
+        {% endfor %}
+      {% endif %}
     </tbody>
   </table>
 {% endblock %}

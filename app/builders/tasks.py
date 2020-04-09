@@ -2,7 +2,7 @@ import os
 
 from app.builders.abstract import AbsTask
 from app.builders.builders import ProjectConfig
-from app.builders.utils import make_dirs, remove_dirs, create_zip, make_file
+from app.builders.utils import make_dirs, remove_dirs, create_zip, make_file, remove_file
 from app.builders.templates import flaskenv, gitignore, config, readme, requirements, shell_context, blueprint_init, \
     blueprint_route, app_init, blueprint, quick_script
 
@@ -150,6 +150,7 @@ class DeleteProjectTask(AbsTask):
 
     def execute(self) -> None:
         remove_dirs(self.config.project_home)
+        remove_file(self.config.archive)
 
     def rollback(self) -> None:
         raise NotImplemented

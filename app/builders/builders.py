@@ -18,6 +18,7 @@ class ProjectConfig:
         self.user_home = os.path.join(current_app.config['PROJECTS_ROOT'], owner)
         self.project_home = os.path.join(self.user_home, name)
         self.app_home = os.path.join(self.project_home, 'app')
+        self.archive = os.path.join(current_app.config['ARCHIVE_FOLDER'], name + '.' + 'zip')
 
         self.packages = re.findall(r'\w\w+', packages)
 

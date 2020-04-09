@@ -76,6 +76,17 @@ def project_new():
     return render_template('main/project_new.html', title='New Project', form=form)
 
 
+@bp.route('/project/delete/<project_id>', methods=['GET'])
+def project_delete(project_id):
+    project = db.session.query(Project).filter_by(id=project_id).first()
+    if project:
+        _delete_project(project.name)
+        db.session.delete(project)
+        db.session.commit()
+        flash('Project deleted')
+    return redirect(url_for('main.projects'))
+
+
 @bp.route('/projects', methods=['GET'])
 def projects():
     projects = db.session.query(Project).\
