@@ -6,9 +6,10 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 from flask_moment import Moment
+from flask_sqlalchemy import SQLAlchemy
 
+from app.api.v1.resources import api
 from app.logger import RequestFormatter
 from config import Config
 
@@ -29,6 +30,7 @@ def create_app(config_class=Config):
     login.init_app(app)
     mail.init_app(app)
     moment.init_app(app)
+    api.init_app(app)
 
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
