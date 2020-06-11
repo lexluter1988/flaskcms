@@ -6,8 +6,8 @@ from app.builders.builders import ProjectConfig, BuildProject
 from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTask, DeleteProjectTask, \
     CreateBlueprintsTask, CreateAppInitTask, CreateQuickStartScriptTask
 from app.main import bp
-from app.main.forms import ProjectForm
-from app.models import Project
+from app.main.forms import ProjectForm, FeedBackForm
+from app.models import Project, FeedBack
 
 
 def _get_username():
@@ -92,3 +92,16 @@ def projects():
     projects = db.session.query(Project).\
         filter(Project.user_id == current_user.id).order_by(Project.timestamp.desc()).all()
     return render_template('main/projects.html', title='My Projects', projects=projects)
+
+
+@bp.route('/feedback', methods=['GET', 'POST'])
+def feedback():
+    form = FeedBackForm()
+    if form.validate_on_submit():
+        flash('Congratulations, we took your opinion. Thank you :)')
+        feedback = FeedBack(name=form.name.data, email=form.email.data, content=form.content.data)
+        db.session.add(feedback)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    return render_template('main/feedback.html', title='Feedback', form=form)
+

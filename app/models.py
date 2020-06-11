@@ -62,3 +62,12 @@ class Project(db.Model):
     app_home = db.Column(db.String(512))
     archive = db.Column(db.String(512))
     packages = db.Column(db.String(512))
+
+
+class FeedBack(db.Model):
+    __tablename__ = 'feedback'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(512))
+    email = db.Column(db.String(512))
+    content = db.Column(db.String(512))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
