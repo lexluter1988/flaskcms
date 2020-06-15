@@ -105,3 +105,8 @@ def feedback():
         return redirect(url_for('main.index'))
     return render_template('main/feedback.html', title='Feedback', form=form)
 
+
+@bp.route('/about', methods=['GET'])
+def about():
+    return render_template('main/about.html', title='About Project')
+
