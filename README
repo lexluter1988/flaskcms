@@ -1,18 +1,11 @@
-Это некомерческий проект простой платформы по созданию дерева вашего проекта на Flask.
-Я, как средний разработчик, столкнулся с проблемой занудного создания routes, __init__, папок и рутинных операций, решил.
-Решил, что создам себе маленькую панельку для генерации проектов.
-Так сказать, Flask который генерит Flask.
-Знаю, что есть похожие проекты, но я не собирался ни с кем конкурирвать. И честно не смотрел их.
+FlaskCMS is a non-commercial for newbies and strange people like me, who like Flask. 
+The project intends to simplify how you create the project structure.
 
-Тут для вас - простая форма, заполненная именем проекта, именами ваших блюпринтов, и все.
-Создаст проект с README, requitements, gitignore, и вашими папками.
-Даже квик старт скриптик прилагается. Затем вы можете просто нажать скачать и получите ваш .zip архив.
-С которым уже можно работать. Распаковать, запустить квик старт, а дальше уже кодить.
-Никаких долгих и больших настроек. Извините, но никаких тонких настроек тоже нет.
-Вот собственно и все.
+You can be an anonymous user here, just create a project and grab your zip with prepared env, requirements,
+and blueprints so that you don't need to read manual every time.
 
-Вы можете регистрироваться а можете создать просто так, забрать архив и уйти.
+You can register on my site, store a few templates. 
+You can generate projects and just see how files are written.
+Feel free to use it, send me any feedback. 
 
-Я периодически работаю над новыми штучками для этого генератора, поэтому пишите мне свободно в почту.
-
-Рад видеть вас тут. Алексей.
+Thank you,Alexey 
