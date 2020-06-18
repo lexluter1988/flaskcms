@@ -6,3 +6,5 @@ env*
 *db
 app/projects/*
 app/static/*.zip
+/venv
+/logs
