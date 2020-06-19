@@ -8,3 +8,4 @@ app/projects/*
 app/static/*.zip
 /venv
 /logs
+/docs/build
