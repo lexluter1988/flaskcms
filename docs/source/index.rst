@@ -11,6 +11,11 @@ Welcome to FlaskCMS's documentation!
    :caption: Contents:
 
 
+FlaskCMS api
+=====================
+.. automodule:: app.api.v1.resources
+   :members:
+
 
 Indices and tables
 ==================
