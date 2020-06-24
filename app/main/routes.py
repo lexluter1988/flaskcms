@@ -110,3 +110,9 @@ def feedback():
 def about():
     return render_template('main/about.html', title='About Project')
 
+
+@bp.route('/projects/<project_id>', methods=['GET'])
+def project_get(project_id):
+    project = db.session.query(Project).\
+        filter(Project.user_id == current_user.id).filter(Project.id == project_id).first()
+    return render_template('main/project.html', title='Project', project=project)

@@ -15,7 +15,7 @@
       {% if projects | length %}
         {% for project in projects %}
         <tr>
-          <td>{{ project.name }}</td>
+          <td><a href="{{ url_for('main.project_get', project_id = project.id ) }}">{{ project.name }}</a></td>
           <td>{{ moment(project.timestamp).format('LLL') }}</td>
           <td>{{ project.packages }}</td>
           <td><a href="{{project.archive}}">download</a></td>

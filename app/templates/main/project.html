@@ -1,0 +1,10 @@
+{% extends "main/base.html" %}
+
+{% block app_content %}
+      {% if project %}
+          <h2>{{ project.name }}</h2>
+          <h2>{{ moment(project.timestamp).format('LLL') }}</h2>
+          <h2>{{ project.packages }}</h2>
+          <h2><a href="{{project.archive}}">download</a></h2>
+      {% endif %}
+{% endblock %}
