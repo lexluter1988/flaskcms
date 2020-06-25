@@ -48,6 +48,9 @@ class User(UserMixin, db.Model):
             return
         return db.session.query(User).get(id)
 
+    def is_admin(self):
+        return self.email in current_app.config['ADMINS']
+
 
 class Project(db.Model):
     __tablename__ = 'projects'

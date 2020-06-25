@@ -57,9 +57,13 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('main.about') }}">About Project</a>
       </li>
+      {% if current_user.is_admin %}
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('main.feedback') }}">Left a feedback</a>
+        <a class="nav-link" href="{{ url_for('main.feedback') }}">Feedback From Customers</a>
       </li>
+      {% else %}
+        <a class="nav-link" href="{{ url_for('main.feedback') }}">Left a Feedback</a>
+      {%  endif %}
     </ul>
   </div>
 </nav>
