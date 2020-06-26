@@ -106,6 +106,12 @@ def feedback():
     return render_template('main/feedback.html', title='Feedback', form=form)
 
 
+@bp.route('/feedbacks', methods=['GET'])
+def feedbacks():
+    feedbacks = db.session.query(FeedBack).all()
+    return render_template('main/feedbacks.html', title='Feedbacks', feedbacks=feedbacks)
+
+
 @bp.route('/about', methods=['GET'])
 def about():
     return render_template('main/about.html', title='About Project')
