@@ -9,3 +9,25 @@ You can generate projects and just see how files are written.
 Feel free to use it, send me any feedback. 
 
 Thank you,Alexey 
+
+=== Installation - Dev ====
+`install.sh` with `--dev` will do all things. The server will be running on your machine.
+Admin will be `admin@example.com`
+
+=== Installation - Production ====
+
+`install.sh` is the simplies way. Just run it as `root` and specify your `user` for running this app.
+Also specify `admin_login`, `admin_email` and `admin_password`. 
+This will put generate files for nginx, gunicorn, place them into correct places and app will be inited.
+
+==== Bootstrapting ====
+In order to have db initiated with `admin` user created and ready for work
+
+```
+flask bootstrap
+```
+
+This will create everything you need.
+
+==== Maintenance Mode ====
+Simply create `maintenance` file in root directort `app`
