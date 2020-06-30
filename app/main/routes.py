@@ -1,3 +1,5 @@
+import os
+
 from flask import url_for, redirect, render_template, flash
 from flask_login import current_user
 
@@ -8,6 +10,7 @@ from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTas
 from app.main import bp
 from app.main.forms import ProjectForm, FeedBackForm
 from app.models import Project, FeedBack
+from config import basedir
 
 
 def _get_username():
@@ -45,6 +48,12 @@ def _delete_project(project_name):
     builder = BuildProject(config)
     builder.task_add(DeleteProjectTask(config))
     builder.run_pipeline()
+
+
+@bp.before_app_request
+def before_request():
+    if os.path.exists('app/maintenance'):
+        return render_template('main/maintenance.html')
 
 
 @bp.route('/')
