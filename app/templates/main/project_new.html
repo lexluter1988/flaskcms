@@ -1,21 +1,21 @@
 {% extends "main/base.html" %}
 
 {% block app_content %}
-    <h1>Create New Project</h1>
+    <h1>{{ _('Create New Project') }}</h1>
     <form action="" method="post">
       {{ form.hidden_tag() }}
       <div class="form-group">
-        <label for="name">Username:</label>
-        <input type="text" class="form-control" placeholder="Enter project name" name="name" id="name" required>
-          <div class="valid-feedback">Valid</div>
-          <div class="invalid-feedback">Please fill out this field</div>
+        <label for="name">{{ _('Username') }}:</label>
+        <input type="text" class="form-control" placeholder={{ _('Enter your project name') }} name="name" id="name" required>
+          <div class="valid-feedback">{{ _('Valid') }}</div>
+          <div class="invalid-feedback">{{ _('Please fill out this field') }}</div>
       </div>
       <div class="form-group">
-        <label for="packages">Password:</label>
-        <input type="text" class="form-control" placeholder="Type comma separated packages" name="packages" id="packages" required>
-        <div class="valid-feedback">Valid</div>
-        <div class="invalid-feedback">Please fill out this field</div>
+        <label for="packages">{{ _('Password') }}:</label>
+        <input type="text" class="form-control" placeholder={{ _('Type comma separated packages') }} name="packages" id="packages" required>
+        <div class="valid-feedback">{{ _('Valid') }}</div>
+        <div class="invalid-feedback">{{ _('Please fill out this field') }}</div>
       </div>
-      <button type="submit" class="btn btn-primary" name="submit" id="submit">Create</button>
+      <button type="submit" class="btn btn-primary" name="submit" id="submit">{{ _('Create') }}</button>
     </form>
 {% endblock %}

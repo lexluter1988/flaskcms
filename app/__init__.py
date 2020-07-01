@@ -2,7 +2,8 @@ import logging
 import os
 from logging.handlers import RotatingFileHandler, SMTPHandler
 
-from flask import Flask
+from flask import Flask, request, current_app
+from flask_babel import Babel
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
@@ -14,6 +15,7 @@ from app.logger import RequestFormatter
 from config import Config
 
 db = SQLAlchemy()
+babel = Babel()
 migrate = Migrate()
 login = LoginManager()
 login.login_view = 'auth.login'
@@ -26,6 +28,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     db.init_app(app)
+    babel.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
@@ -71,3 +74,8 @@ def create_app(config_class=Config):
         app.logger.info('FlaskCMS startup')
 
     return app
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(current_app.config['LANGUAGES'])

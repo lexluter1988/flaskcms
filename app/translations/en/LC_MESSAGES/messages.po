@@ -1,0 +1,311 @@
+# English translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-07-01 17:05+0700\n"
+"PO-Revision-Date: 2020-07-01 17:05+0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: app/auth/forms.py:13 app/auth/forms.py:20 app/templates/auth/register.html:8
+#: app/templates/main/project_new.html:8
+msgid "Username"
+msgstr ""
+
+#: app/auth/forms.py:14 app/auth/forms.py:22
+#: app/templates/auth/register.html:20
+#: app/templates/auth/reset_password_form.html:8
+#: app/templates/main/project_new.html:14
+msgid "Password"
+msgstr ""
+
+#: app/auth/forms.py:15
+msgid "Remember Me"
+msgstr ""
+
+#: app/auth/forms.py:16 app/main/forms.py:10
+msgid "Sign In"
+msgstr ""
+
+#: app/auth/forms.py:21 app/templates/auth/register.html:14
+#: app/templates/auth/reset_password_request.html:8
+#: app/templates/main/feedback.html:14 app/templates/main/feedbacks.html:8
+msgid "Email"
+msgstr ""
+
+#: app/auth/forms.py:23 app/templates/auth/register.html:26
+#: app/templates/auth/register.html:27
+#: app/templates/auth/reset_password_form.html:14
+#: app/templates/auth/reset_password_form.html:15
+msgid "Repeat Password"
+msgstr ""
+
+#: app/auth/forms.py:24 app/templates/auth/register.html:4
+msgid "Register"
+msgstr ""
+
+#: app/auth/routes.py:21
+msgid "Invalid username or password"
+msgstr ""
+
+#: app/auth/routes.py:48
+msgid ""
+"Congratulations, you are now a registered user! But not activated yet. "
+"Check your email for confirmation link"
+msgstr ""
+
+#: app/auth/routes.py:64
+msgid "Your account has been activated"
+msgstr ""
+
+#: app/auth/routes.py:77
+msgid "Check your email for the instructions to reset your password"
+msgstr ""
+
+#: app/auth/routes.py:79
+msgid "There is not such user registered"
+msgstr ""
+
+#: app/auth/routes.py:96
+msgid "Your password has been reset."
+msgstr ""
+
+#: app/main/forms.py:8
+msgid "Project Name"
+msgstr ""
+
+#: app/main/forms.py:9 app/templates/main/projects.html:9
+msgid "Packages"
+msgstr ""
+
+#: app/main/forms.py:14
+msgid "Your Name"
+msgstr ""
+
+#: app/main/forms.py:15
+msgid "Your Email"
+msgstr ""
+
+#: app/main/forms.py:16
+msgid "Write what do you think"
+msgstr ""
+
+#: app/main/forms.py:17
+msgid "Submit"
+msgstr ""
+
+#: app/main/routes.py:71
+msgid "Congratulations, project has been created"
+msgstr ""
+
+#: app/main/routes.py:95
+msgid "Project deleted"
+msgstr ""
+
+#: app/main/routes.py:110
+msgid "Congratulations, we took your opinion. Thank you :)"
+msgstr ""
+
+#: app/templates/auth/login.html:9 app/templates/auth/register.html:9
+msgid "Enter username"
+msgstr ""
+
+#: app/templates/auth/login.html:10 app/templates/auth/login.html:16
+#: app/templates/auth/register.html:10 app/templates/auth/register.html:16
+#: app/templates/auth/register.html:22 app/templates/auth/register.html:28
+#: app/templates/auth/reset_password_form.html:10
+#: app/templates/auth/reset_password_form.html:16
+#: app/templates/auth/reset_password_request.html:10
+#: app/templates/main/feedback.html:10 app/templates/main/feedback.html:16
+#: app/templates/main/feedback.html:22 app/templates/main/project_new.html:10
+#: app/templates/main/project_new.html:16
+msgid "Valid"
+msgstr ""
+
+#: app/templates/auth/login.html:11 app/templates/auth/login.html:17
+#: app/templates/auth/register.html:11 app/templates/auth/register.html:17
+#: app/templates/auth/register.html:23 app/templates/auth/register.html:29
+#: app/templates/auth/reset_password_form.html:11
+#: app/templates/auth/reset_password_form.html:17
+#: app/templates/auth/reset_password_request.html:11
+#: app/templates/main/feedback.html:11 app/templates/main/feedback.html:17
+#: app/templates/main/feedback.html:23 app/templates/main/project_new.html:11
+#: app/templates/main/project_new.html:17
+msgid "Please fill out this field"
+msgstr ""
+
+#: app/templates/auth/login.html:15 app/templates/auth/register.html:21
+#: app/templates/auth/reset_password_form.html:9
+msgid "Enter password"
+msgstr ""
+
+#: app/templates/auth/login.html:21
+msgid "Remember me"
+msgstr ""
+
+#: app/templates/auth/login.html:23
+msgid "New user?"
+msgstr ""
+
+#: app/templates/auth/login.html:25 app/templates/auth/register.html:31
+msgid "Sign in"
+msgstr ""
+
+#: app/templates/auth/login.html:27
+msgid "Forgot Your Password"
+msgstr ""
+
+#: app/templates/auth/login.html:28
+msgid "Click To Reset It"
+msgstr ""
+
+#: app/templates/auth/register.html:15
+#: app/templates/auth/reset_password_request.html:9
+msgid "Enter email"
+msgstr ""
+
+#: app/templates/auth/reset_password_form.html:4
+msgid "Reset Your Password"
+msgstr ""
+
+#: app/templates/auth/reset_password_form.html:19
+#: app/templates/auth/reset_password_request.html:13
+msgid "Reset"
+msgstr ""
+
+#: app/templates/auth/reset_password_request.html:4
+msgid "Reset Password"
+msgstr ""
+
+#: app/templates/main/about.html:5
+msgid ""
+"FlaskCMS is a non-commercial for newbies and strange people like me, who "
+"like Flask.\n"
+"        The project intends to simplify how you create the project "
+"structure.\n"
+"\n"
+"        You can be an anonymous user here, just create a project and grab"
+" your zip with prepared env, requirements,\n"
+"        and blueprints so that you don't need to read manual every time.\n"
+"\n"
+"        You can register on my site, store a few templates.\n"
+"        You can generate projects and just see how files are written.\n"
+"        Feel free to use it, send me any feedback.\n"
+"\n"
+"        Thank you,\n"
+"        Alexey"
+msgstr ""
+
+#: app/templates/main/base.html:51
+msgid "My Projects"
+msgstr ""
+
+#: app/templates/main/base.html:55
+msgid "Create Project"
+msgstr ""
+
+#: app/templates/main/base.html:58
+msgid "About Project"
+msgstr ""
+
+#: app/templates/main/base.html:62
+msgid "Feedback from Customers"
+msgstr ""
+
+#: app/templates/main/base.html:65
+msgid "Left a Feedback"
+msgstr ""
+
+#: app/templates/main/feedback.html:4
+msgid "Submit Your Feedback"
+msgstr ""
+
+#: app/templates/main/feedback.html:8 app/templates/main/feedbacks.html:7
+#: app/templates/main/projects.html:7
+msgid "Name"
+msgstr ""
+
+#: app/templates/main/feedback.html:9
+msgid "Enter your name"
+msgstr ""
+
+#: app/templates/main/feedback.html:15
+msgid "Enter your email"
+msgstr ""
+
+#: app/templates/main/feedback.html:20
+msgid "Your Feedback"
+msgstr ""
+
+#: app/templates/main/feedback.html:21
+msgid "Enter your feedback"
+msgstr ""
+
+#: app/templates/main/feedback.html:25 app/templates/main/project_new.html:19
+msgid "Create"
+msgstr ""
+
+#: app/templates/main/feedbacks.html:9
+msgid "Feedback"
+msgstr ""
+
+#: app/templates/main/feedbacks.html:10
+msgid "Date"
+msgstr ""
+
+#: app/templates/main/maintenance.html:5
+msgid ""
+"The site in currently under maintenance. Sorry for inconvenience.\n"
+"            The our Team is working on it.\n"
+"            Thank you for understanding."
+msgstr ""
+
+#: app/templates/main/project.html:8 app/templates/main/projects.html:21
+msgid "download"
+msgstr ""
+
+#: app/templates/main/project_new.html:4
+msgid "Create New Project"
+msgstr ""
+
+#: app/templates/main/project_new.html:9
+msgid "Enter your project name"
+msgstr ""
+
+#: app/templates/main/project_new.html:15
+msgid "Type comma separated packages"
+msgstr ""
+
+#: app/templates/main/projects.html:8
+msgid "Created"
+msgstr ""
+
+#: app/templates/main/projects.html:10
+msgid "Archive"
+msgstr ""
+
+#: app/templates/main/projects_anon.html:4
+msgid ""
+"Since you are an anonymous user, your link to project archive will expire"
+" as soon as you close this page"
+msgstr ""
+
+#: app/templates/main/projects_anon.html:5
+msgid "Here is yours"
+msgstr ""
+
+#: app/templates/main/projects_anon.html:5
+msgid "project"
+msgstr ""
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap 4 Website Example</title>
+  <title>FlaskCMS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,21 +48,21 @@
                 <a class="nav-link" href="{{ url_for('auth.logout') }}"><span class="fa fa-sign-out fa-1x"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('main.projects') }}">My Projects</a>
+                <a class="nav-link" href="{{ url_for('main.projects') }}">{{ _('My Projects') }}</a>
             </li>
       {% endif %}
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('main.project_new') }}">Create Project</a>
+        <a class="nav-link" href="{{ url_for('main.project_new') }}">{{ _('Create Project') }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('main.about') }}">About Project</a>
+        <a class="nav-link" href="{{ url_for('main.about') }}">{{ _('About Project') }}</a>
       </li>
       {% if current_user.is_admin %}
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('main.feedbacks') }}">Feedback From Customers</a>
+        <a class="nav-link" href="{{ url_for('main.feedbacks') }}">{{ _('Feedback from Customers') }}</a>
       </li>
       {% else %}
-        <a class="nav-link" href="{{ url_for('main.feedback') }}">Left a Feedback</a>
+        <a class="nav-link" href="{{ url_for('main.feedback') }}">{{ _('Left a Feedback') }}</a>
       {%  endif %}
     </ul>
   </div>

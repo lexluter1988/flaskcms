@@ -1,6 +1,7 @@
 import os
 
 from flask import url_for, redirect, render_template, flash
+from flask_babel import _
 from flask_login import current_user
 
 from app import db
@@ -10,7 +11,6 @@ from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTas
 from app.main import bp
 from app.main.forms import ProjectForm, FeedBackForm
 from app.models import Project, FeedBack
-from config import basedir
 
 
 def _get_username():
@@ -68,7 +68,7 @@ def project_new():
     if form.validate_on_submit():
         config = _build_project(form.name.data, form.packages.data)
         file_link = _zip_project(form.name.data, form.packages.data)
-        flash('Congratulations, project has been created')
+        flash(_('Congratulations, project has been created'))
         if current_user.is_anonymous:
             return render_template('main/projects_anon.html', title='New Project', form=form, url=file_link)
         else:
@@ -92,7 +92,7 @@ def project_delete(project_id):
         _delete_project(project.name)
         db.session.delete(project)
         db.session.commit()
-        flash('Project deleted')
+        flash(_('Project deleted'))
     return redirect(url_for('main.projects'))
 
 
@@ -107,7 +107,7 @@ def projects():
 def feedback():
     form = FeedBackForm()
     if form.validate_on_submit():
-        flash('Congratulations, we took your opinion. Thank you :)')
+        flash(_('Congratulations, we took your opinion. Thank you :)'))
         feedback = FeedBack(name=form.name.data, email=form.email.data, content=form.content.data)
         db.session.add(feedback)
         db.session.commit()
