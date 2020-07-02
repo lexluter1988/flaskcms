@@ -59,7 +59,7 @@ def before_request():
 @bp.route('/')
 @bp.route('/index')
 def index():
-    return render_template('main/base.html')
+    return render_template('main/home.html')
 
 
 @bp.route('/project', methods=['GET', 'POST'])
