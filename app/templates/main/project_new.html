@@ -6,13 +6,13 @@
       {{ form.hidden_tag() }}
       <div class="form-group">
         <label for="name">{{ _('Username') }}:</label>
-        <input type="text" class="form-control" placeholder={{ _('Enter your project name') }} name="name" id="name" required>
+        <input type="text" class="form-control" placeholder="{{ _('Enter your project name') }}" name="name" id="name" required>
           <div class="valid-feedback">{{ _('Valid') }}</div>
           <div class="invalid-feedback">{{ _('Please fill out this field') }}</div>
       </div>
       <div class="form-group">
         <label for="packages">{{ _('Password') }}:</label>
-        <input type="text" class="form-control" placeholder={{ _('Type comma separated packages') }} name="packages" id="packages" required>
+        <input type="text" class="form-control" placeholder="{{ _('Type comma separated packages') }}" name="packages" id="packages" required>
         <div class="valid-feedback">{{ _('Valid') }}</div>
         <div class="invalid-feedback">{{ _('Please fill out this field') }}</div>
       </div>
