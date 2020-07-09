@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
     projects = db.relationship('Project', backref='author', lazy='dynamic')
+    events = db.relationship('Event', backref='author', lazy='dynamic')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -73,4 +74,12 @@ class FeedBack(db.Model):
     name = db.Column(db.String(512))
     email = db.Column(db.String(512))
     content = db.Column(db.String(512))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+
+class Event(db.Model):
+    __tablename__ = 'events'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    action = db.Column(db.String(512))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
