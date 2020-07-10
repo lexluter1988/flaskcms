@@ -14,24 +14,24 @@ def singleton(class_):
 
 class Action:
     @staticmethod
-    def project_created(user: str, project: str):
-        return f'user {user} created new project {project}'
+    def project_created(project: str):
+        return f'user created new project {project}'
 
     @staticmethod
-    def project_removed(user: str, project: str):
-        return f'user {user} removed project {project}'
+    def project_removed(project: str):
+        return f'user removed project {project}'
 
     @staticmethod
-    def user_registered(user: str):
-        return f'new user {user}'
+    def user_registered():
+        return f'new user registered'
 
     @staticmethod
-    def user_logged_in(user: str):
-        return f'user {user} logged in'
+    def user_logged_in():
+        return f'user logged in'
 
     @staticmethod
-    def user_logged_out(user: str):
-        return f'user {user} logged out'
+    def user_logged_out():
+        return f'user logged out'
 
 
 @singleton

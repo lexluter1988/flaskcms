@@ -24,7 +24,7 @@ def login():
             flash(_('Invalid username or password'))
             return redirect(url_for('auth.login'))
         login_user(user, remember=form.remember_me.data)
-        events.send(user, Action.user_logged_in(user))
+        events.send(user, Action.user_logged_in())
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('main.index')
@@ -34,7 +34,7 @@ def login():
 
 @bp.route('/logout')
 def logout():
-    events.send(current_user, Action.user_logged_out(current_user))
+    events.send(current_user, Action.user_logged_out())
     logout_user()
     return redirect(url_for('main.index'))
 
@@ -49,6 +49,7 @@ def register_request():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        events.send(user, Action.user_registered())
         send_registration_confirm_email(user)
         flash(_('Congratulations, you are now a registered user! '
               'But not activated yet. Check your email for confirmation link'))

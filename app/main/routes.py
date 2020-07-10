@@ -5,11 +5,13 @@ from flask_babel import _
 from flask_login import current_user
 
 from app import db
+from app.auth.routes import events
 from app.builders.builders import ProjectConfig, BuildProject
 from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTask, DeleteProjectTask, \
     CreateBlueprintsTask, CreateAppInitTask, CreateQuickStartScriptTask
 from app.main import bp
 from app.main.forms import ProjectForm, FeedBackForm
+from app.managers.eventmanager import Action
 from app.models import Project, FeedBack
 
 
@@ -87,6 +89,7 @@ def project_new():
                               archive=file_link)
             db.session.add(project)
             db.session.commit()
+            events.send(current_user, Action.project_created(project.name))
             return redirect(url_for('main.projects'))
     return render_template('main/project_new.html', title='New Project', form=form)
 
@@ -98,6 +101,7 @@ def project_delete(project_id):
         _delete_project(project.name)
         db.session.delete(project)
         db.session.commit()
+        events.send(current_user, Action.project_removed(project.name))
         flash(_('Project deleted'))
     return redirect(url_for('main.projects'))
 
