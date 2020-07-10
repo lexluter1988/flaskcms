@@ -12,7 +12,7 @@ from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTas
 from app.main import bp
 from app.main.forms import ProjectForm, FeedBackForm
 from app.managers.eventmanager import Action
-from app.models import Project, FeedBack
+from app.models import Project, FeedBack, Event
 
 
 def _get_username():
@@ -141,3 +141,9 @@ def project_get(project_id):
     project = db.session.query(Project).\
         filter(Project.user_id == current_user.id).filter(Project.id == project_id).first()
     return render_template('main/project.html', title='Project', project=project)
+
+
+@bp.route('/events', methods=['GET'])
+def events():
+    events = db.session.query(Event).all()
+    return render_template('main/eventlog.html', title='Event Log', events=events)
