@@ -4,11 +4,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-    #    'sqlite:///' + os.path.join(basedir, 'app.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # postgres
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:docker@localhost:5432/flaskcms"
+    #SQLALCHEMY_DATABASE_URI = "postgresql://postgres:docker@localhost:5432/flaskcms"
 
     PROJECTS_ROOT = 'app/projects'
     ARCHIVE_FOLDER = 'app/static'

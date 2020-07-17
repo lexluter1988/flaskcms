@@ -1,15 +1,6 @@
 from app import db
 from app.models import Event
-
-
-def singleton(class_):
-    instances = {}
-
-    def get_instance(*args, **kwargs):
-        if class_ not in instances:
-            instances[class_] = class_(*args, **kwargs)
-        return instances[class_]
-    return get_instance
+from app.utils.decorators import singleton
 
 
 class Action:
