@@ -5,14 +5,16 @@ from flask_babel import _
 from flask_login import current_user
 
 from app import db
-from app.auth.routes import events
 from app.builders.builders import ProjectConfig, BuildProject
 from app.builders.tasks import BuildDirsTask, CreateArchiveTask, BuildConfigsTask, DeleteProjectTask, \
     CreateBlueprintsTask, CreateAppInitTask, CreateQuickStartScriptTask
 from app.main import bp
 from app.main.forms import ProjectForm, FeedBackForm
-from app.managers.eventmanager import Action
+from app.managers.eventmanager import Action, EventManager
 from app.models import Project, FeedBack, Event
+
+
+#events = EventManager()
 
 
 def _get_username():
@@ -89,7 +91,7 @@ def project_new():
                               archive=file_link)
             db.session.add(project)
             db.session.commit()
-            events.send(current_user, Action.project_created(project.name))
+            #events.send(current_user, Action.project_created(project.name))
             return redirect(url_for('main.projects'))
     return render_template('main/project_new.html', title='New Project', form=form)
 
@@ -101,15 +103,20 @@ def project_delete(project_id):
         _delete_project(project.name)
         db.session.delete(project)
         db.session.commit()
-        events.send(current_user, Action.project_removed(project.name))
+        #events.send(current_user, Action.project_removed(project.name))
         flash(_('Project deleted'))
     return redirect(url_for('main.projects'))
 
 
 @bp.route('/projects', methods=['GET'])
 def projects():
-    projects = db.session.query(Project).\
-        filter(Project.user_id == current_user.id).order_by(Project.timestamp.desc()).all()
+    if current_user.is_admin():
+        print(current_user.email)
+        print('you are admin')
+        projects = db.session.query(Project).all()
+    else:
+        projects = db.session.query(Project).\
+            filter(Project.user_id == current_user.id).order_by(Project.timestamp.desc()).all()
     return render_template('main/projects.html', title='My Projects', projects=projects)
 
 
