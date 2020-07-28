@@ -1,4 +1,6 @@
+import datetime
 import os
+from datetime import timedelta
 
 from flask import url_for, redirect, render_template, flash, send_from_directory, current_app
 from flask_babel import _
@@ -56,6 +58,14 @@ def _delete_project(project_name):
     builder.run_pipeline()
 
 
+def _clear_old_projects(delta=7):
+    since = datetime.now() - timedelta(days=delta)
+    olds = db.session.query(Project).filter(Project.timestamp < since).all()
+    for old in olds:
+        if 'anonymous' in old.project_home:
+            project_delete(old.id)
+
+
 @bp.before_app_request
 def before_request():
     if os.path.exists('app/maintenance'):
@@ -94,6 +104,9 @@ def project_new():
             db.session.add(project)
             db.session.commit()
             #events.send(current_user, Action.project_created(project.name))
+            # clear old projects
+            _clear_old_projects()
+
             return redirect(url_for('main.projects'))
     return render_template('main/project_new.html', title='New Project', form=form)
 
