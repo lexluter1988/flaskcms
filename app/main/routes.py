@@ -18,14 +18,16 @@ from app.models import Project, FeedBack, Event
 
 
 def _get_username():
-    if not current_user.is_anonymous:
+    if not current_user:
+        user = 'anonymous'
+    elif not current_user.is_anonymous:
         user = current_user.username
     else:
         user = 'anonymous'
     return user
 
 
-def _build_project(project_name, packages=None) -> ProjectConfig:
+def _build_project(project_name, packages='main, auth') -> ProjectConfig:
     config = ProjectConfig(_get_username(), project_name, packages=packages)
     builder = BuildProject(config)
     builder.task_add(BuildDirsTask(config))

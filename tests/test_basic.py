@@ -4,6 +4,7 @@ import pytest
 
 
 from app import create_app, db
+from app.main.routes import _build_project
 from app.models import User
 from config import basedir
 
@@ -55,6 +56,10 @@ def test_home_page(client):
 
 def test_feedback_page(client):
     response = client.get('/feedback')
-    assert b'Submit your feedback' in response.data
+    assert b'Submit Your Feedback' in response.data
     assert response.status_code == 200
 
+
+def test_build_project():
+    config = _build_project('test_project')
+    assert config.user == 'anonymous'
